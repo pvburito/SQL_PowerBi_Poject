@@ -1,0 +1,27 @@
+-- KPIS
+
+-- 1.Total revenue. Total price.
+
+SELECT SUM(total_price) AS Total_Revenue
+from pizza_sales
+
+-- 2. Average Order Value
+-- we dont want duplicates in order_id
+
+SELECT SUM(total_price)/ COUNT(DISTINCT order_id) AS Avg_Order_Value
+from pizza_sales
+
+-- 3. Total Pizzas SOld
+
+SELECT SUM(quantity) AS Total_Pizza_Sold
+FROM pizza_sales
+
+-- 4. Total Orders without duplciates
+
+SELECT COUNT(DISTINCT order_id) AS Total_Orders
+FROM pizza_sales
+
+-- 5. Total avg Pizzas per order
+
+SELECT CAST(CAST(SUM(quantity) AS DECIMAL(10,2))/CAST(COUNT(DISTINCT order_id) AS DECIMAL(10,2)) AS DECIMAL(10,2))AS Avg_Pizzas_per_order
+from pizza_sales
